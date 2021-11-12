@@ -10,6 +10,6 @@ class ViewUsers
 
     public function handle()
     {
-        // ...
+        return view('users.index');
     }
 }
