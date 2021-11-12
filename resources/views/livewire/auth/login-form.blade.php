@@ -35,7 +35,6 @@
           <div class="mt-1">
             <input
                     wire:model="password"
-                    wire:keyup="checkPasswordStrength()"
                     id="password"
                     name="password"
                     type="password"
