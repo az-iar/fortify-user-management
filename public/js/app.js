@@ -5342,34 +5342,14 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _data_password__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data/password */ "./resources/js/data/password.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data("password", _data_password__WEBPACK_IMPORTED_MODULE_1__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
-
-window.checkPasswordStrength = function (e) {
-  var input = e.target;
-  var password = input.value;
-  var message;
-  var style;
-
-  if (password.length < 4) {
-    message = "Strength: Weak!";
-    style = "text-red-600";
-  } else if (password.length < 8) {
-    message = "Strength: Medium";
-    style = "text-yellow-600";
-  } else {
-    message = "Strength: Strong!";
-    style = "text-green-600";
-  }
-
-  var alert = document.createElement("p");
-  alert.innerText = message;
-  alert.className = style;
-  input.parentNode.insertBefore(alert, input.nextSibling);
-};
 
 /***/ }),
 
@@ -5401,6 +5381,58 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/data/password.js":
+/*!***************************************!*\
+  !*** ./resources/js/data/password.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  return {
+    password: "",
+
+    get style() {
+      if (this.password.length === 0) {
+        return "hidden";
+      }
+
+      if (this.password.length < 4) {
+        return "text-red-600 text-sm mt-1";
+      }
+
+      if (this.password.length < 8) {
+        return "text-yellow-600 text-sm mt-1";
+      }
+
+      return "text-green-600 text-sm mt-1";
+    },
+
+    get message() {
+      if (this.password.length === 0) {
+        return "";
+      }
+
+      if (this.password.length < 4) {
+        return "Strength: Weak!";
+      }
+
+      if (this.password.length < 8) {
+        return "Strength: Medium";
+      }
+
+      return "Strength: Strong!";
+    }
+
+  };
+});
 
 /***/ }),
 

@@ -55,6 +55,35 @@
                                 <p class="text-sm text-red-600 mt-1">{{ $errors->first('email') }}</p>
                             @endif
                         </div>
+                        <div x-data="password">
+                            <label for="password" class="block text-sm font-medium text-gray-700">
+                                Password
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        id="password"
+                                        name="password"
+                                        x-model="password"
+                                        type="password">
+                            </div>
+                            <p x-bind:class="style" x-text="message"></p>
+                            @if($errors->has('password'))
+                                <p class="text-sm text-red-600 mt-1">{{ $errors->first('password') }}</p>
+                            @endif
+                        </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">
+                                Confirm Password
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        id="password_confirmation"
+                                        name="password_confirmation"
+                                        type="password">
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
