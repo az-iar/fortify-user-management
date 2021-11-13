@@ -35,4 +35,9 @@ class UserList extends Component
         $this->sortBy = $column;
         $this->order = $order;
     }
+
+    public function editUser($userId)
+    {
+        $this->emitTo('user.edit-user-modal', 'show', $userId);
+    }
 }

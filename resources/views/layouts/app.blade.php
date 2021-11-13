@@ -30,14 +30,26 @@
                   </div>
                   <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                    <a href="#"
+                    <a href="{{ route('home') }}"
+                       @if(request()->routeIs('home'))
+                       aria-current="page"
                        class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                       aria-current="page">
+                       @else
+                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                            @endif
+
+                    >
                       Dashboard
                     </a>
 
                     <a href="{{ route('users.index') }}"
-                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                       @if(request()->routeIs('users.index'))
+                       aria-current="page"
+                       class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                       @else
+                       class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                            @endif
+                    >
                       Users
                     </a>
                   </div>
@@ -77,12 +89,14 @@
           </div>
         </div>
 
-@else
-    @yield('content')
-@endif
+    @else
+        @yield('content')
+    @endif
 
-<!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    @yield('modal')
+
+    <!-- Scripts -->
     @livewireScripts
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
