@@ -11,6 +11,8 @@
 @endsection
 
 @section('modal')
-    <livewire:user.edit-user-modal open="{{ $action === 'edit' }}" user-id="{{ request('user_id') }}" />
+    @if(request()->filled('user_id'))
+        <livewire:user.edit-user-modal open="{{ $action === 'edit' }}" user-id="{{ request('user_id') }}" />
+    @endif
     <livewire:user.add-user-modal open="{{ $action === 'create' }}" />
 @endsection

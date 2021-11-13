@@ -7,34 +7,22 @@ use Livewire\Component;
 
 class EditUserModal extends Component
 {
-    public ?string $userId = null;
+    public string $userId;
 
-    public ?User $user = null;
+    public User $user;
 
     public bool $open = false;
 
-    protected $listeners = ['show'];
+    public function mount()
+    {
+        $this->user = User::query()->find($this->userId);
+    }
 
     public function render()
     {
         return view('livewire.user.edit-user-modal', [
-            'user' => $this->user ?? new User(),
-            'open' => $this->open,
+            'user' => $this->user,
         ]);
-    }
-
-    public function close()
-    {
-        $this->open = false;
-        $this->userId = null;
-        $this->user = null;
-    }
-
-    public function show($userId)
-    {
-        $this->userId = $userId;
-        $this->user = User::query()->find($this->userId);
-        $this->open = true;
     }
 
     public function save()

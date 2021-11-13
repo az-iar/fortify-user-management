@@ -4,6 +4,7 @@ namespace App\Actions\User;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class UpdateUser
@@ -12,6 +13,13 @@ class UpdateUser
 
     public function handle(Request $request, User $user)
     {
-        return redirect()->back();
+        $data = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', Rule::unique('users')->ignoreModel($user)],
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('users.index');
     }
 }
